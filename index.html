@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Joe's Bar — Menu</title>
+<meta name="description" content="Joe's Bar drink menu — beer, whiskey, vodka, wine, cocktails, shots, bottles and hookah."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Oswald:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+*,*::before,*::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; overflow-x: hidden; }
+body{ margin:0; font-family: 'Jost', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1,h2{ margin:0; }
+ul{ list-style:none; margin:0; padding:0; }
+a{ text-decoration:none; color:inherit; }
+button{ font-family:inherit; cursor:pointer; }
+
+.hero{ position:relative; padding: 64px 20px 40px; text-align:center; overflow:hidden; }
+.hero-inner{ position:relative; z-index:2; max-width:720px; margin:0 auto; }
+.hero-title{ font-family:'Oswald',sans-serif; font-weight:700; letter-spacing:.06em; font-size: clamp(2.2rem, 6vw, 3.4rem); margin-top: 18px; }
+.hero-sub{ margin: 8px 0 0; letter-spacing:.35em; text-transform:uppercase; font-size: .78rem; opacity:.75; }
+
+.logo-badge{ width:132px; height:132px; border-radius:50%; margin:0 auto; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; position:relative; background:#0c0c0c; border: 2px solid #262626; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.logo-badge-sm{ width:76px; height:76px; }
+.logo-star{ width:26px; height:26px; margin-bottom:2px; fill:#e0342b; stroke:#fff; stroke-width:1; }
+.logo-badge-sm .logo-star{ width:16px; height:16px; }
+.logo-word{ font-family:'Kaushan Script', cursive; font-size:1.9rem; line-height:1; color:#fff; }
+.logo-badge-sm .logo-word{ font-size:1.15rem; }
+.logo-apos{ color:#e0342b; }
+.logo-bar{ display:flex; align-items:center; gap:5px; text-transform:uppercase; font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:.22em; font-size:.68rem; color:#e0342b; margin-top:2px; }
+.logo-badge-sm .logo-bar{ font-size:.5rem; gap:3px; }
+.mini-star{ width:8px; height:8px; fill:#e0342b; }
+
+.icon{ overflow: visible; }
+.icon .body, .icon .detail{ stroke: currentColor; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+.icon .body{ fill: var(--icon-fill, none); }
+.icon .detail{ fill: none; }
+
+.catnav{ position:sticky; top:0; z-index:20; backdrop-filter: blur(10px); }
+.catnav-track{ display:flex; gap:8px; overflow-x:auto; padding: 12px 16px; scrollbar-width: none; }
+.catnav-track::-webkit-scrollbar{ display:none; }
+.chip{ flex:0 0 auto; display:flex; align-items:center; gap:7px; padding:9px 16px; border-radius:999px; font-size:.82rem; font-weight:500; letter-spacing:.02em; white-space:nowrap; transition: all .2s ease; }
+.chip-icon{ width:18px; height:18px; flex:none; }
+
+.menu-wrap{ max-width: 920px; margin: 0 auto; padding: 20px 20px 40px; }
+.category{ padding: 34px 0 10px; scroll-margin-top: 90px; }
+.category-head{ display:flex; align-items:center; gap:16px; margin-bottom: 18px; }
+.cat-badge{ width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex:none; }
+.cat-icon{ width:30px; height:30px; }
+.cat-heading{ display:flex; align-items:baseline; gap:10px; }
+.cat-index{ font-family:'Oswald',sans-serif; font-size:.78rem; opacity:.4; letter-spacing:.1em; }
+.category-head h2{ font-family:'Oswald',sans-serif; font-weight:600; letter-spacing:.05em; font-size:1.5rem; text-transform:uppercase; }
+
+.item-list{ display:grid; grid-template-columns: 1fr 1fr; gap: 0 32px; }
+.item{ display:flex; align-items:baseline; gap:8px; padding: 9px 0; }
+.item-name{ font-size:.98rem; }
+.item-leader{ flex:1; border-bottom: 1.5px dotted currentColor; opacity:.28; min-width: 12px; transform: translateY(-3px); }
+.item-price{ font-family:'Oswald',sans-serif; font-weight:500; font-size:.95rem; white-space:nowrap; }
+
+.site-footer{ text-align:center; padding: 40px 20px 70px; }
+.footer-logo{ margin-bottom:14px; opacity:.9; }
+.site-footer p{ font-size:.78rem; opacity:.55; letter-spacing:.03em; }
+
+.to-top{ position:fixed; right:18px; bottom:18px; border:none; border-radius:999px; padding:10px 16px; font-size:.78rem; font-weight:600; letter-spacing:.05em; opacity:0; transform: translateY(8px); pointer-events:none; transition: all .25s ease; z-index: 30; }
+.to-top.show{ opacity:1; transform:none; pointer-events:auto; }
+
+@media (max-width: 560px){
+  .item-list{ grid-template-columns: 1fr; }
+  .logo-badge{ width:108px; height:108px; }
+}
+
+
+:root{
+  --bg: #0b0a09;
+  --bg-panel: #16130f;
+  --fg: #f4ece0;
+  --muted: #b3a692;
+  --accent: #d4af6a;
+  --accent-soft: rgba(212,175,106,.16);
+  --line: rgba(244,236,224,.10);
+}
+body{ background: var(--bg); color: var(--fg); position: relative; }
+
+.grain{ position: fixed; inset:0; pointer-events:none; z-index:1; opacity:.05; mix-blend-mode: overlay; }
+.glow{ position:absolute; left:50%; top:-120px; width:640px; max-width:100vw; height:420px; transform:translateX(-50%);
+  background: radial-gradient(closest-side, rgba(212,175,106,.28), transparent 72%); pointer-events:none; filter: blur(4px); }
+
+.hero{ position:relative; z-index:2; }
+.hero::after{ content:""; display:block; width:64px; height:2px; background:var(--accent); margin:26px auto 0; opacity:.7; }
+.hero-title{ text-shadow: 0 0 40px rgba(212,175,106,.25); }
+.hero-sub{ color: var(--muted); }
+.logo-badge{ box-shadow: 0 0 0 6px rgba(212,175,106,.05), 0 16px 40px rgba(0,0,0,.55), 0 0 34px rgba(212,175,106,.18); }
+
+.catnav{ background: rgba(11,10,9,.82); border-bottom:1px solid var(--line); backdrop-filter: blur(10px); }
+.chip{ color: var(--muted); border:1px solid var(--line); background: rgba(255,255,255,.02); }
+.chip .chip-icon{ color: var(--muted); }
+.chip.active{ color:#161310; background: var(--accent); border-color: var(--accent); }
+.chip.active .chip-icon{ color:#161310; }
+
+.category{ border-top: 1px solid var(--line); position:relative; z-index:2; }
+.category:first-child{ border-top:none; }
+.cat-badge{ background: radial-gradient(circle at 35% 30%, rgba(212,175,106,.22), var(--bg-panel) 70%); color: var(--accent); border: 1px solid var(--line); box-shadow: 0 0 24px rgba(212,175,106,.12); }
+.cat-index{ color: var(--accent); opacity:.6; }
+.category-head h2{ color: var(--fg); }
+
+.item-name{ color: var(--fg); }
+.item-price{ color: var(--accent); font-weight:600; }
+.item-leader{ color: var(--muted); }
+
+.site-footer{ background: var(--bg-panel); border-top:1px solid var(--line); position:relative; z-index:2; }
+.to-top{ background: var(--accent); color:#161310; }
+
+/* filled, glowing icons for the atmospheric theme */
+.icon{ --icon-fill: rgba(212,175,106,.85); }
+.icon .body{ filter: drop-shadow(0 0 6px rgba(212,175,106,.25)); }
+
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true">
+  <svg width="100%" height="100%"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
+</div>
+<div class="glow" aria-hidden="true"></div>
+
+<header class="hero">
+  <div class="hero-inner">
+    
+    <div class="logo-badge">
+      <svg viewBox="0 0 24 24" class="logo-star"><path d="M12 1.5l2.7 6.4 6.9.6-5.3 4.6 1.6 6.8L12 16.3 6.1 19.9l1.6-6.8-5.3-4.6 6.9-.6z"/></svg>
+      <div class="logo-word">Joe<span class="logo-apos">’</span>s</div>
+      <div class="logo-bar"><svg viewBox="0 0 24 24" class="mini-star"><path d="M12 1.5l2.7 6.4 6.9.6-5.3 4.6 1.6 6.8L12 16.3 6.1 19.9l1.6-6.8-5.3-4.6 6.9-.6z"/></svg><span>Bar</span><svg viewBox="0 0 24 24" class="mini-star"><path d="M12 1.5l2.7 6.4 6.9.6-5.3 4.6 1.6 6.8L12 16.3 6.1 19.9l1.6-6.8-5.3-4.6 6.9-.6z"/></svg></div>
+    </div>
+    
+    <h1 class="hero-title">Joe’s Bar</h1>
+    <p class="hero-sub">Drinks &amp; Hookah Menu</p>
+  </div>
+</header>
+
+<nav class="catnav" aria-label="Menu categories"><div class="catnav-track"><a href="#beer" class="chip" data-target="beer"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M20 24h20v28a3 3 0 0 1-3 3H23a3 3 0 0 1-3-3Z"/>
+        <path class="body" d="M18 24c0-4 3-6 5-3 1-3 5-3 6 0 1-3 5-3 6 0 2-3 5-1 5 3"/>
+        <path class="detail" d="M40 30q11 0 11 9t-11 9"/>
+        <line class="detail" x1="25" y1="31" x2="25" y2="47"/>
+        <line class="detail" x1="31" y1="31" x2="31" y2="47"/>
+    </svg><span>Beer</span></a><a href="#whiskey" class="chip" data-target="whiskey"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M20 20h24l-5 28H25Z"/>
+        <rect class="detail" x="27" y="25" width="9" height="9" rx="1"/>
+        <line class="detail" x1="23.6" y1="34" x2="40.4" y2="34"/>
+    </svg><span>Whiskey Glass</span></a><a href="#vodka" class="chip" data-target="vodka"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M16 18h32L32 38Z"/>
+        <line class="detail" x1="32" y1="38" x2="32" y2="50"/>
+        <line class="detail" x1="22" y1="50" x2="42" y2="50"/>
+        <circle class="detail" cx="37" cy="24" r="2.3"/>
+        <line class="detail" x1="37" y1="21.7" x2="41" y2="17"/>
+    </svg><span>Vodka Glass</span></a><a href="#wine" class="chip" data-target="wine"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M22 16c0 14 3 19 10 19s10-5 10-19Z"/>
+        <line class="detail" x1="32" y1="35" x2="32" y2="49"/>
+        <line class="detail" x1="23" y1="49" x2="41" y2="49"/>
+    </svg><span>Wine Glass</span></a><a href="#cocktails" class="chip" data-target="cocktails"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M16 20c0 11 7 14 16 14s16-3 16-14Z"/>
+        <line class="detail" x1="32" y1="34" x2="32" y2="49"/>
+        <line class="detail" x1="22" y1="49" x2="42" y2="49"/>
+        <circle class="detail" cx="40" cy="17" r="2.2"/>
+        <line class="detail" x1="40" y1="14.8" x2="42.5" y2="10"/>
+    </svg><span>Cocktails</span></a><a href="#virgin" class="chip" data-target="virgin"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M16 20c0 11 7 14 16 14s16-3 16-14Z"/>
+        <line class="detail" x1="32" y1="34" x2="32" y2="49"/>
+        <line class="detail" x1="22" y1="49" x2="42" y2="49"/>
+        <line class="detail" x1="27" y1="26" x2="19" y2="9"/>
+        <circle class="detail" cx="35" cy="26" r="1.3"/>
+        <circle class="detail" cx="30" cy="23" r="1"/>
+    </svg><span>Virgin Cocktails</span></a><a href="#soft" class="chip" data-target="soft"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M22 20h20l-3 30H25Z"/>
+        <line class="detail" x1="34.5" y1="9" x2="29" y2="24"/>
+        <circle class="detail" cx="30" cy="32" r="1.2"/>
+        <circle class="detail" cx="34" cy="40" r="1.1"/>
+    </svg><span>Soft Drinks</span></a><a href="#shots" class="chip" data-target="shots"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M24 24h16l-2 22H26Z"/>
+        <line class="detail" x1="25.4" y1="27.5" x2="38.6" y2="27.5"/>
+    </svg><span>Shots</span></a><a href="#others" class="chip" data-target="others"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M22 22h20l-3 26H25Z"/>
+        <path class="detail" d="M40 20q4-8 10-10"/>
+        <path class="body" d="M44 16q3-3 6-2-1 3-4 4-2 1-2-2Z"/>
+        <path class="body" d="M47 11q2-3 5-2-1 3-3 3-2 .5-2-1Z"/>
+    </svg><span>Others</span></a><a href="#bottles" class="chip" data-target="bottles"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <rect class="detail" x="28" y="6" width="8" height="4" rx="1"/>
+        <rect class="body" x="29" y="8" width="6" height="8" rx="1"/>
+        <path class="body" d="M29 16c-7 6-8 10-8 16v18a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V32c0-6-1-10-8-16Z"/>
+        <rect class="detail" x="23" y="34" width="18" height="10" rx="1"/>
+    </svg><span>Bottles</span></a><a href="#hookah" class="chip" data-target="hookah"><svg class="icon chip-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse class="body" cx="32" cy="50" rx="12" ry="5"/>
+        <path class="body" d="M24 50c0-10 2-16 8-16s8 6 8 16"/>
+        <line class="detail" x1="32" y1="34" x2="32" y2="22"/>
+        <path class="body" d="M26 22h12l-4-8h-4Z"/>
+        <path class="detail" d="M40 40q14 2 12 16-2 8-12 6"/>
+        <path class="detail" d="M32 12q-3-4 0-7q3 3 0 7"/>
+    </svg><span>Hookah</span></a></div></nav>
+
+<main class="menu-wrap">
+
+    <section class="category" id="beer">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M20 24h20v28a3 3 0 0 1-3 3H23a3 3 0 0 1-3-3Z"/>
+        <path class="body" d="M18 24c0-4 3-6 5-3 1-3 5-3 6 0 1-3 5-3 6 0 2-3 5-1 5 3"/>
+        <path class="detail" d="M40 30q11 0 11 9t-11 9"/>
+        <line class="detail" x1="25" y1="31" x2="25" y2="47"/>
+        <line class="detail" x1="31" y1="31" x2="31" y2="47"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">01</span>
+          <h2>Beer</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Almaza</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Almaza Light</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Mexican Beer</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="whiskey">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M20 20h24l-5 28H25Z"/>
+        <rect class="detail" x="27" y="25" width="9" height="9" rx="1"/>
+        <line class="detail" x1="23.6" y1="34" x2="40.4" y2="34"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">02</span>
+          <h2>Whiskey Glass</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Black Label</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">Chivas</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">Double Black</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$20.00</span></li><li class="item"><span class="item-name">Glenfiddich</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$13.00</span></li><li class="item"><span class="item-name">Jameson</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li><li class="item"><span class="item-name">J &amp; B</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li><li class="item"><span class="item-name">Jim Beam Red Stag</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Jim Beam Apple</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Jim Beam Bourbon</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Red Label</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.00</span></li><li class="item"><span class="item-name">Local Whiskey Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="vodka">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M16 18h32L32 38Z"/>
+        <line class="detail" x1="32" y1="38" x2="32" y2="50"/>
+        <line class="detail" x1="22" y1="50" x2="42" y2="50"/>
+        <circle class="detail" cx="37" cy="24" r="2.3"/>
+        <line class="detail" x1="37" y1="21.7" x2="41" y2="17"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">03</span>
+          <h2>Vodka Glass</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Absolut</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li><li class="item"><span class="item-name">Grey Goose</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$14.00</span></li><li class="item"><span class="item-name">Russian Standard</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li><li class="item"><span class="item-name">Stolichnaya Gold</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Stolichnaya Red</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li><li class="item"><span class="item-name">Local Vodka Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="wine">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M22 16c0 14 3 19 10 19s10-5 10-19Z"/>
+        <line class="detail" x1="32" y1="35" x2="32" y2="49"/>
+        <line class="detail" x1="23" y1="49" x2="41" y2="49"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">04</span>
+          <h2>Wine Glass</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Red Wine</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$4.00</span></li><li class="item"><span class="item-name">Rosé Wine</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">White Wine</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="cocktails">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M16 20c0 11 7 14 16 14s16-3 16-14Z"/>
+        <line class="detail" x1="32" y1="34" x2="32" y2="49"/>
+        <line class="detail" x1="22" y1="49" x2="42" y2="49"/>
+        <circle class="detail" cx="40" cy="17" r="2.2"/>
+        <line class="detail" x1="40" y1="14.8" x2="42.5" y2="10"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">05</span>
+          <h2>Cocktails</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Amaretto Sour</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">B-52</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$11.00</span></li><li class="item"><span class="item-name">Black Russian</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Blue Lagoon</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$9.00</span></li><li class="item"><span class="item-name">Bull Frog</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">Davidoff</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">Espresso Martini</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$11.00</span></li><li class="item"><span class="item-name">Gin Basil</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Jamaica</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li><li class="item"><span class="item-name">Kamikaze</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$9.00</span></li><li class="item"><span class="item-name">Long Island</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">Margarita</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$9.00</span></li><li class="item"><span class="item-name">Mojito</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$9.00</span></li><li class="item"><span class="item-name">Negroni</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$11.00</span></li><li class="item"><span class="item-name">Old Fashioned</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">Sex on the Beach</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">Cuba Libre</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.00</span></li><li class="item"><span class="item-name">Take Me Home</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$10.00</span></li><li class="item"><span class="item-name">Tequila Sunrise</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.00</span></li><li class="item"><span class="item-name">White Russian</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Pinacolada</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$9.00</span></li><li class="item"><span class="item-name">Special Tino’s</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$12.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="virgin">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M16 20c0 11 7 14 16 14s16-3 16-14Z"/>
+        <line class="detail" x1="32" y1="34" x2="32" y2="49"/>
+        <line class="detail" x1="22" y1="49" x2="42" y2="49"/>
+        <line class="detail" x1="27" y1="26" x2="19" y2="9"/>
+        <circle class="detail" cx="35" cy="26" r="1.3"/>
+        <circle class="detail" cx="30" cy="23" r="1"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">06</span>
+          <h2>Virgin Cocktails</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Virgin Jamaica</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Virgin Pinacolada</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Minted Lemonade</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Lime Mojito</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="soft">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M22 20h20l-3 30H25Z"/>
+        <line class="detail" x1="34.5" y1="9" x2="29" y2="24"/>
+        <circle class="detail" cx="30" cy="32" r="1.2"/>
+        <circle class="detail" cx="34" cy="40" r="1.1"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">07</span>
+          <h2>Soft Drinks</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">7 Up / Diet 7 Up</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$3.00</span></li><li class="item"><span class="item-name">Pepsi / Diet Pepsi</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$3.00</span></li><li class="item"><span class="item-name">Energy Drink</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Perrier</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$4.00</span></li><li class="item"><span class="item-name">Tonic</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$4.00</span></li><li class="item"><span class="item-name">Water</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$3.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="shots">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M24 24h16l-2 22H26Z"/>
+        <line class="detail" x1="25.4" y1="27.5" x2="38.6" y2="27.5"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">08</span>
+          <h2>Shots</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Blowjob</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li><li class="item"><span class="item-name">B-52</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Bailey’s</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$3.50</span></li><li class="item"><span class="item-name">Brain Damage</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Doudou</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$4.50</span></li><li class="item"><span class="item-name">Goldschlager</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.00</span></li><li class="item"><span class="item-name">Jager</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Jager Bomb</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.00</span></li><li class="item"><span class="item-name">Shot Mix</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Sumbuka</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Tequila Shot</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li><li class="item"><span class="item-name">Tequila Shot Gold</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$5.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="others">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <path class="body" d="M22 22h20l-3 26H25Z"/>
+        <path class="detail" d="M40 20q4-8 10-10"/>
+        <path class="body" d="M44 16q3-3 6-2-1 3-4 4-2 1-2-2Z"/>
+        <path class="body" d="M47 11q2-3 5-2-1 3-3 3-2 .5-2-1Z"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">09</span>
+          <h2>Others</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Gin Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$6.00</span></li><li class="item"><span class="item-name">Gordons Gin Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Hendrick’s Gin Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$13.00</span></li><li class="item"><span class="item-name">Tanqueray Gin Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Tequila Gold Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Tequila Silver Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Rum Silver Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li><li class="item"><span class="item-name">Rum Spiced Glass</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$7.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="bottles">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <rect class="detail" x="28" y="6" width="8" height="4" rx="1"/>
+        <rect class="body" x="29" y="8" width="6" height="8" rx="1"/>
+        <path class="body" d="M29 16c-7 6-8 10-8 16v18a4 4 0 0 0 4 4h14a4 4 0 0 0 4-4V32c0-6-1-10-8-16Z"/>
+        <rect class="detail" x="23" y="34" width="18" height="10" rx="1"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">10</span>
+          <h2>Bottles</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Black Label Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$100.00</span></li><li class="item"><span class="item-name">Chivas Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$100.00</span></li><li class="item"><span class="item-name">J &amp; B Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$70.00</span></li><li class="item"><span class="item-name">Red Label Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$45.00</span></li><li class="item"><span class="item-name">Jameson Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$80.00</span></li><li class="item"><span class="item-name">Local Whiskey Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$45.00</span></li><li class="item"><span class="item-name">Absolut Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$70.00</span></li><li class="item"><span class="item-name">Russian Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$70.00</span></li><li class="item"><span class="item-name">Stolichnaya Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$70.00</span></li><li class="item"><span class="item-name">Stolichnaya Gold Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$80.00</span></li><li class="item"><span class="item-name">Local Vodka Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$50.00</span></li><li class="item"><span class="item-name">Red Wine Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$20.00</span></li><li class="item"><span class="item-name">Rosé Wine Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$23.00</span></li><li class="item"><span class="item-name">White Wine Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$23.00</span></li><li class="item"><span class="item-name">Silver Rum Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$50.00</span></li><li class="item"><span class="item-name">Spiced Rum Bottle</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$55.00</span></li></ul>
+    </section>
+    
+    <section class="category" id="hookah">
+      <div class="category-head">
+        <span class="cat-badge"><svg class="icon cat-icon" viewBox="0 0 64 64" aria-hidden="true">
+        <ellipse class="body" cx="32" cy="50" rx="12" ry="5"/>
+        <path class="body" d="M24 50c0-10 2-16 8-16s8 6 8 16"/>
+        <line class="detail" x1="32" y1="34" x2="32" y2="22"/>
+        <path class="body" d="M26 22h12l-4-8h-4Z"/>
+        <path class="detail" d="M40 40q14 2 12 16-2 8-12 6"/>
+        <path class="detail" d="M32 12q-3-4 0-7q3 3 0 7"/>
+    </svg></span>
+        <div class="cat-heading">
+          <span class="cat-index">11</span>
+          <h2>Hookah</h2>
+        </div>
+      </div>
+      <ul class="item-list"><li class="item"><span class="item-name">Teffe7</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Na3na3 w 7amod</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">3enab</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">3elke</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">3elke W na3na3</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$8.00</span></li><li class="item"><span class="item-name">Hookah Add</span><span class="item-leader" aria-hidden="true"></span><span class="item-price">$4.00</span></li></ul>
+    </section>
+    
+</main>
+
+<footer class="site-footer">
+  <div class="footer-logo">
+    <div class="logo-badge logo-badge-sm">
+      <svg viewBox="0 0 24 24" class="logo-star"><path d="M12 1.5l2.7 6.4 6.9.6-5.3 4.6 1.6 6.8L12 16.3 6.1 19.9l1.6-6.8-5.3-4.6 6.9-.6z"/></svg>
+      <div class="logo-word">Joe<span class="logo-apos">’</span>s</div>
+      <div class="logo-bar"><svg viewBox="0 0 24 24" class="mini-star"><path d="M12 1.5l2.7 6.4 6.9.6-5.3 4.6 1.6 6.8L12 16.3 6.1 19.9l1.6-6.8-5.3-4.6 6.9-.6z"/></svg><span>Bar</span><svg viewBox="0 0 24 24" class="mini-star"><path d="M12 1.5l2.7 6.4 6.9.6-5.3 4.6 1.6 6.8L12 16.3 6.1 19.9l1.6-6.8-5.3-4.6 6.9-.6z"/></svg></div>
+    </div>
+    </div>
+  <p>All prices in USD · Menu items and prices subject to change.</p>
+  <button class="to-top" id="toTop" aria-label="Back to top">↑ Top</button>
+</footer>
+
+
+
+<script>
+(function(){
+  var chips = document.querySelectorAll('.chip');
+  var sections = document.querySelectorAll('.category');
+  var map = {};
+  chips.forEach(function(c){ map[c.dataset.target] = c; });
+
+  chips.forEach(function(c){
+    c.addEventListener('click', function(e){
+      e.preventDefault();
+      var el = document.getElementById(c.dataset.target);
+      if(el){
+        var y = el.getBoundingClientRect().top + window.pageYOffset - 96;
+        window.scrollTo({top:y, behavior:'smooth'});
+      }
+    });
+  });
+
+  if('IntersectionObserver' in window){
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var chip = map[entry.target.id];
+        if(!chip) return;
+        if(entry.isIntersecting){
+          chips.forEach(function(c){ c.classList.remove('active'); });
+          chip.classList.add('active');
+          chip.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    sections.forEach(function(s){ obs.observe(s); });
+  }
+
+  var topBtn = document.getElementById('toTop');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 500){ topBtn.classList.add('show'); } else { topBtn.classList.remove('show'); }
+  });
+  topBtn.addEventListener('click', function(){ window.scrollTo({top:0, behavior:'smooth'}); });
+})();
+</script>
+</body>
+</html>
